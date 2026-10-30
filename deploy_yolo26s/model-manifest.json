@@ -1,0 +1,89 @@
+{
+  "model": "exp.kmodel",
+  "format": "KModel",
+  "target": "K230",
+  "task": "detect",
+  "input": {
+    "shape": [
+      1,
+      3,
+      320,
+      320
+    ],
+    "layout": "NCHW",
+    "type": "uint8",
+    "color": "RGB",
+    "bytes": 307200
+  },
+  "output": {
+    "shape": [
+      1,
+      11,
+      2100
+    ],
+    "layout": "YOLOv8 dense detection: cx,cy,w,h + 7 class scores",
+    "type": "float32",
+    "bytes": 92400,
+    "end2end": false
+  },
+  "preprocess": {
+    "resize": "centered letterbox",
+    "padding_color": [
+      0,
+      0,
+      0
+    ],
+    "input_range": [
+      0,
+      1
+    ],
+    "mean": [
+      0,
+      0,
+      0
+    ],
+    "std": [
+      1,
+      1,
+      1
+    ],
+    "normalization": "pixel/255 compiled into KModel",
+    "swap_rb": false
+  },
+  "inference": {
+    "decoder": "aidemo.yolov8_det_postprocess",
+    "confidence_threshold": 0.25,
+    "nms_threshold": 0.45,
+    "max_boxes": 50,
+    "rgb888p_size": [
+      640,
+      360
+    ],
+    "display_size": [
+      640,
+      480
+    ]
+  },
+  "labels": [
+    "redballon",
+    "pink",
+    "green",
+    "blue",
+    "shallowblue",
+    "purple",
+    "brown"
+  ],
+  "source": "exp.onnx",
+  "source_input_size": [
+    320,
+    320
+  ],
+  "source_sha256": "e1b3ee950a83e711e4910eecedfa934d621d4219ddf524f93023891d4f60cc47",
+  "sha256": "15db43c9bc65c41ac32782f5c69277a7382fcb3aa108322ec6e91145cf5e2663",
+  "file_bytes": 3477264,
+  "verification": {
+    "matched_host_kmodel": "/home/ailing/Kmodel/exp.kmodel",
+    "onnx_metadata_source": "/home/ailing/Kmodel/exp.onnx",
+    "tensor_descriptor_source": "nncase.Simulator"
+  }
+}

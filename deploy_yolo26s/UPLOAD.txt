@@ -1,0 +1,26 @@
+K230 CanMV deployment
+
+Copy the files while preserving this layout under the directory used by
+`APP_DIR` (the current value is `/sdcard/ballon/deploy_yolo26s`):
+
+  main.py
+  exp_detector.py
+  serial_control.py
+  exp.kmodel
+  labels.txt
+  model-manifest.json
+  config/__init__.py
+  config/user_config.py
+  config/model_config.py
+  config/sensor/__init__.py
+  config/sensor/sensor_config.py
+  config/sensor/sensor.yaml
+
+For power-on startup, copy `autostart_main.py` to `/sdcard/main.py`.
+See AUTOSTART_README.md for startup and disabling instructions.
+You can also run `main.py` from this directory in CanMV IDE.  `sensor.yaml` is read at
+startup, so keep it beside `sensor_config.py` when changing FPS, AWB settling,
+or exposure values.  If sensor.yaml is absent, the defaults in sensor_config.py
+are used.  The default model is `/sdcard/ballon/deploy_yolo26s/exp.kmodel`.
+Model path, input/output shape, labels, letterbox, thresholds and serial
+control are configured in config/user_config.py.  See CONFIG_README.md.
